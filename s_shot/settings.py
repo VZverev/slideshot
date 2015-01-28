@@ -105,15 +105,28 @@ WSGI_APPLICATION = 's_shot.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = {
+SQLiteDB = True
+if SQLiteDB == True:
+    DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'slide_db',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 's_shot_db_mysql',                      # Or path to database file if using sqlite3.
+            # The following settings are not used with sqlite3:
+            'USER': 's_shot_mysql',
+            'PASSWORD': 'c38a5lwb',
+            'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+    #       'PORT': '',                      # Set to empty string for default.
+        }
+    }
+
+    
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
