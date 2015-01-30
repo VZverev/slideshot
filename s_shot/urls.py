@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*- 
 from django.conf.urls import patterns, include, url
-
+import broadcasts
 from django.contrib import admin
 admin.autodiscover()
 
@@ -12,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('allauth.urls')),
     #url(r'^accounts/', include('registration.urls')),
     #(r'^loginza/', include('loginza.urls')),
+    url(r'^broadcast/', include('broadcasts.urls')),
 )

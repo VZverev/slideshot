@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 """
 Django settings for s_shot project.
 
@@ -56,6 +57,7 @@ INSTALLED_APPS = (
     #'loginza',
     #'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.twitter',
+    'broadcasts',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -145,5 +147,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
+TEMPLATE_DIRS = (
+                 '/var/www/getxe/data/s_shot/templates',
+                 '/var/www/getxe/data/s_shot/broadcasts/templates',
+)
+#collect static folder
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'staticfiles'),
+)
+#static path
+STATIC_ROOT = os.path.join(os.path.expanduser('~'), 'www/getxe.ru/static/s_shot')
+STATIC_URL = '/static/s_shot/'
+#media path
+MEDIA_ROOT = os.path.join(os.path.expanduser('~'), 'www/getxe.ru/media/s_shot')
+MEDIA_URL = '/media/s_shot/'
 
