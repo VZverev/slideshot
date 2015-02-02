@@ -6,6 +6,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from broadcasts.models import Broadcasting, Slide
 from broadcasts.serializers import SlideSerializer
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.http import Http404
 
 def slider(request, id = 0):
     slides = Broadcasting.objects.get(pk=1).slides.all()
@@ -31,3 +34,21 @@ class SlideViewSet(viewsets.ModelViewSet):
     """
     queryset = Slide.objects.all()
     serializer_class = SlideSerializer
+    
+class SlideGet(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+    def get_object(self,bk, pos):
+        #broadcasting = Broadcasting.objects.get(pk=int(bk))
+        slides = Broadcasting.objects.get(pk=int(bk)).slides.all()
+        try:
+            return slides.get(position=pos)
+        except Slide.DoesNotExist:
+            raise Http404
+
+    def get(self, request, bk, pos, format=None):
+        slide = self.get_object(bk,pos)
+        serializer = SlideSerializer(slide)
+        return Response(serializer.data)
+    

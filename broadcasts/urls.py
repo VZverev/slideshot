@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'slide.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^slide_get/(?P<bk>[0-9]+)/(?P<pos>[0-9]+)/$', views.SlideGet.as_view()),
     url(r'^', include(router.urls)),
     url(r'^get_slide/$', views.get_new),
     url(r'^broadcast(?P<num>\d+)/$', views.slider),
