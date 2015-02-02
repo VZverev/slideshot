@@ -37,7 +37,8 @@ class Broadcasting(models.Model):
 class Slide(models.Model):
     file = models.ImageField(upload_to=get_upload_path)
     broadcasting = models.ForeignKey(Broadcasting, related_name=u'slides', verbose_name=u'Презентация')
-    position = models.IntegerField(u'Порядковый номер')
+    position = models.IntegerField(u'Порядковый номер', default=0)
+    dt_upload = models.DateTimeField(u'Дата загрузки',auto_now_add=True) 
     dt_create = models.DateTimeField(u'Дата создания',auto_now_add=True)
     def __unicode__(self):
         return self.broadcasting.__unicode__()+" #"+self.position.__str__()

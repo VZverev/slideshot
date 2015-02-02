@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     #'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.twitter',
     'broadcasts',
+    'rest_framework',
 )
 
 AUTHENTICATION_BACKENDS = (
