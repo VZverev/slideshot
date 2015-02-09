@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block titles %}
+	Доступные каналы
+{% endblock%}
+
+
+{% block content %}
+
+
+{% for channel in channels %}
+	<div>
+		<a href="{% url 'broadcasts.views.channel' channel.pk %}"><h1>{{ channel.title }}</h1></a>
+	</div>
+{% empty %}
+	<p>Нет доступных каналов</p>
+{% endfor %}
+
+
+{% endblock%}

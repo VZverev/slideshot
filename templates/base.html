@@ -4,13 +4,13 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Getxe.ru{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" media="screen">
 </head>
 <body>
+{% csrf_token %}
 {% block content %}
 {% endblock %}
-{% csrf_token %}
 <!-- Optional: Include the jQuery library -->
 <script src="{% static 'jQuerry/jquery-1.11.1.min.js' %}"></script>
 <!-- Optional: Incorporate the Bootstrap JavaScript plugins -->

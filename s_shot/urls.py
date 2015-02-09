@@ -9,9 +9,14 @@ urlpatterns = patterns('',
     # url(r'^$', 's_shot.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', include('home.urls')),
+    
     url(r'^accounts/', include('allauth.urls')),
     #url(r'^accounts/', include('registration.urls')),
     #(r'^loginza/', include('loginza.urls')),
-    url(r'^broadcast/', include('broadcasts.urls')),
+    url(r'^', include('broadcasts.urls')),
+    url(r'^home$', include('home.urls')),
 )
+urlpatterns += [
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework')),
+]

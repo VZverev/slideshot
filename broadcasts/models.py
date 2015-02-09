@@ -8,7 +8,8 @@ def get_upload_path(instance, filename):
     
 # model of Channel
 class Channel(models.Model):
-    owner = models.ForeignKey(User, verbose_name=u'Владелец', related_name=u'channels')
+   #owner = models.ForeignKey(User, verbose_name=u'Владелец', related_name=u'channels')
+    owner = models.OneToOneField(User, verbose_name=u'Владелец', primary_key=True)
     members = models.ManyToManyField(User, verbose_name=u'Участники', related_name=u'membership')
     title = models.CharField(u'Заголовок', max_length=200)
     desc = models.TextField(u'Описание', max_length = 10000)
@@ -39,7 +40,7 @@ class Slide(models.Model):
     broadcasting = models.ForeignKey(Broadcasting, related_name=u'slides', verbose_name=u'Презентация')
     position = models.IntegerField(u'Порядковый номер', default=0)
     dt_upload = models.DateTimeField(u'Дата загрузки',auto_now_add=True) 
-    dt_create = models.DateTimeField(u'Дата создания',auto_now_add=True)
+    dt_create = models.CharField(u'Дата создания', max_length=10)
     def __unicode__(self):
         return self.broadcasting.__unicode__()+" #"+self.position.__str__()
     

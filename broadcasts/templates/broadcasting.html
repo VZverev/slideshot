@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block titles %}
+	Презентация {% if broadcasting.title|length != 0 %} {{broadcasting.title}} {% else %} Без Названия {% endif %}
+{% endblock%}
+
+
+{% block content %}
+
+<h1>{% if broadcasting.title|length != 0 %} {{broadcasting.title}} {% else %} Без Названия {% endif %}</h1>
+{% comment %}
+ 	{% slider %} <!-- тэг выводит презентацию -->
+{% endcomment %}
+
+{% endblock%}
