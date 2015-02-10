@@ -65,7 +65,8 @@ def mainpage(request):
     pass'''
 #список доступных пользователю каналов
 def channel_list(request):
-    channels = Channel.objects.all()
+    if not request.user.is_authenticated():
+        channels = Channel.objects.all(public_channel=True)
     
     html = render_to_response('channel_list.html', {'channels': channels }, context_instance=RequestContext(request))
     return HttpResponse(html)
