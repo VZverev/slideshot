@@ -39,25 +39,24 @@ $(function() {
             return;
         }
         var request = $.ajax({
-						url : '/broadcast/get_new/',
-						data : { count : s_count},
+						url : '/slide_get/',
+						data: { bk : 1, pos : s_count},
 						type : "POST",
-						timeout : 2000,
+						timeout : 7000,
 					});
 
 					request.done(function(result) {
             			failed_requests_in_a_row = 0;
 						
-			            var data = JSON.parse(result);
-			            
-			            if (data['url']===null) {
+			            var data = result;
+			            if (data['file']===null) {
 			            	return;
 			            }
 						var div = $('<div/>', { class : 'item'});
 						var img = new Image();
-						img.src=data['url'];
+						img.src=data['file'];
 						div.append(img).appendTo(inner);
-						var indicator = $('<li/>').attr("data-target",'#myCarousel').attr("data-slide-to", data['pos']);
+						var indicator = $('<li/>').attr("data-target",'#myCarousel').attr("data-slide-to", data['position']);
 						indicators.append(indicator);			
 						s_count = indicators.children().length;
 						
@@ -74,9 +73,9 @@ $(function() {
 					});
 					
 					request.always(function() {
-						setTimeout(get_new_immage, 2000);
+						setTimeout(get_new_immage, 7000);
 					});
     };
 
-    setTimeout(get_new_immage, 2000);
+    setTimeout(get_new_immage, 7000);
 });
